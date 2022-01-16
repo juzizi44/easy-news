@@ -1,0 +1,18 @@
+## pycharm 默认生成的一些缓存文件
+#.idea/
+#.DS_Store
+#
+##python 默认生成的一些缓存文件
+#__pycache__/
+#*.py[cod]
+#*$py.class
+#
+## Django stuff:
+#djangoProject1/local_settings.py
+#*.sqlite3
+#media/
+#
+##数据库迁移的一些文件
+## database migrations
+#*/migrations/*.py
+#!*/migrations/__init__.py
