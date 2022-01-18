@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rusSta import views
+from rusSta.views import account
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('rusSta/send/sms/',views.send_sms),
-    path('send/sms/',views.send_sms),
-    path('rusSta/register/',views.register)
+    path('register/', account.register, name='register'),
+    path('login/', account.login, name='login'),
+    path('image/code/', account.image_code, name='image_code')
+
 ]

@@ -1,0 +1,72 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+{% block title %}用户注册{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+    <style>
+        .error-msg{
+            color: red;
+            position:absolute;
+            font-size: 13px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div class="account">
+        <div class="title">用户注册</div>
+        <form id="regForm" method="POST" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    <span class="error-msg">{{ field.errors.0 }}</span>
+                </div>
+
+            {% endfor %}
+
+            <div class="row">
+                <div class="col-xs-3">
+                    <input id="btnSubmit" type="button" class="btn btn-primary" value="注册"/>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+    //页面框架加载完成后自动执行函数
+    $(function (){
+        bindClickSubmit();
+    })
+    {#点击提交（注册）#}
+    function bindClickSubmit(){
+        $('#btnSubmit').click(function (){
+            $('.error-msg').empty();
+            //收集表单中的数据（找到每一个字段）
+            //数据ajax发送到后台
+            $.ajax({
+                url:"{% url 'register' %}",
+                type:"POST",
+                data:$('#regForm').serialize(), //所有字段的数据+csrf token
+                dataType:"JSON",
+                success:function (res){
+                    if(res.status){
+                        location.href = res.data;
+                    }else{
+                        $.each(res.error,function (key,value){
+                            $("#id_"+key).next().text(value[0]);
+                        })
+                    }
+                }
+            })
+        })
+    }
+
+    </script>
+{% endblock %}
+
