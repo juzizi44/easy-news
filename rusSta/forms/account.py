@@ -6,12 +6,13 @@ from rusSta import models
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
 from utils import encrypt
+from rusSta.forms.bootstrap import BootStrapForm
+from rusSta.views import account
 
-
-class RegisterModelForm(forms.ModelForm):
+class RegisterModelForm(BootStrapForm,forms.ModelForm):
+    # django里面没有专门针对手机号的验证，在这里可以重写
     mobile_phone = forms.CharField(label='手机号', validators=[RegexValidator(r'^(1[3|4|5|6|7|8|9])\d{9}$', '手机号格式错误'), ])
 
-    # django里面没有专门针对手机号的验证，在这里可以重写
     password = forms.CharField(
         label='密码',
         min_length=8,
@@ -37,11 +38,7 @@ class RegisterModelForm(forms.ModelForm):
         model = models.UserInfo
         fields = ['username', 'email', 'mobile_phone', 'password', 'confirm_password']
 
-    def __init__(self, *args, **kwargs):  # 给每个字段都加上form-control属性
-        super().__init__(*args, **kwargs)
-        for name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
-            field.widget.attrs['placeholder'] = '请输入%s' % (field.label,)
+
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -77,13 +74,37 @@ class RegisterModelForm(forms.ModelForm):
         return confirm_pwd
 
 
-class LoginForm(forms.Form):
+class LoginForm(BootStrapForm,forms.Form):
     username = forms.CharField(label='用户名')
-    password = forms.CharField(label='密码', widget=forms.PasswordInput())
+    password = forms.CharField(label='密码', widget=forms.PasswordInput(render_value=True))
     code = forms.CharField(label='图片验证码')
+    class Meta:
+        fields = ['username', 'password', 'code']
 
-    def __init__(self, *args, **kwargs):  # 给每个字段都加上form-control属性
-        super().__init__(*args, **kwargs)
-        for name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
-            field.widget.attrs['placeholder'] = '请输入%s' % (field.label,)
+
+    def __init__(self,request,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.request = request
+    #
+    # def clean_username(self):
+    #     username = self.cleaned_data['username']
+    #     return username
+
+    def clean_password(self):
+        pwd = self.cleaned_data['password']
+        # 加密并返回
+        return encrypt.md5(pwd)
+
+    def clean_code(self):
+        """图片验证码是否正确"""
+        # 读取用户输入的验证码
+        code = self.cleaned_data['code']
+        # 去session获取自己的验证码
+
+        session_code = self.request.session.get('image_code')
+        # if not session_code:
+        #     raise ValidationError('验证码已过期，请重新获取')
+        if code.strip().upper() != session_code.strip().upper():
+            raise ValidationError('验证码输入错误')
+
+        return code

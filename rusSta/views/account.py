@@ -1,6 +1,12 @@
-from django.shortcuts import render, HttpResponse
+from io import BytesIO
+from django.shortcuts import render, HttpResponse, redirect
 from rusSta.forms.account import RegisterModelForm, LoginForm
 from django.http import JsonResponse
+from rusSta import models
+
+
+from django.db.models import Q
+from utils.image_code import check_code
 
 
 def register(request):
@@ -18,9 +24,29 @@ def register(request):
 
 def login(request):
     """用户名和密码登录"""
-    form = LoginForm()
+    if request.method == 'GET':
+        form = LoginForm(request)
+        return render(request, '../templates/login.html', {'form': form})
+    form = LoginForm(request, data=request.POST)
+    if form.is_valid():
+        #  验证通过，跳转
+
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        code = form.cleaned_data['code']
+
+        user_object = models.UserInfo.objects.filter(
+            Q(email=username) | Q(mobile_phone=username) | Q(username=username)).filter(
+            password=password).first()
+        if user_object:
+            # 用户名密码正确,登录成功
+            request.session['user_id'] = user_object.id
+            request.session.set_expiry(60 * 60 * 24 * 14)  # 用户登陆成功之后用户信息保存两周
+            return redirect('index')
+
+        form.add_error('username', '用户名或密码错误')
+
     return render(request, '../templates/login.html', {'form': form})
-    pass
 
 
 def image_code(request):
@@ -34,3 +60,8 @@ def image_code(request):
     image_object.save(stream, 'png')
 
     return HttpResponse(stream.getvalue())
+
+def logout(request):
+    #  点击退出，清除session里面的id
+    request.session.flush()
+    return redirect('index')

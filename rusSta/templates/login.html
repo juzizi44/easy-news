@@ -17,19 +17,19 @@
 {% block content %}
     <div class="account">
         <div class="title">用户登录</div>
-        <form id="regForm" method="POST" novalidate>
+        <form method="POST" novalidate>
             {% csrf_token %}
             {% for field in form %}
                 {% if field.name == 'code' %}
                     <div class="form-group">
-                        <label for="{{ field.id_for_table }}">{{ field.label }}</label>
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                         <div class="row">
                             <div class="col-xs-7">
                                 {{ field }}
-                                <span class="error-msg">{{ field.error.0 }}</span>
+                                <span class="error-msg">{{ field.errors.0 }}</span>
                             </div>
                             <div class="col-xs-5">
-                                <img src="{% url 'image_code' %}" id="imageCode">
+                                <img src="{% url 'image_code' %}" id="imageCode" title="点击更换图片">
                             </div>
                         </div>
                     </div>
@@ -42,10 +42,16 @@
                 {% endif %}
 
             {% endfor %}
+            <div>
+                <div style="float:right;">
+                    <a href="{% url 'register' %}">注册</a>
+                    <a href="{% url 'index' %}">返回首页</a>
 
+                </div>
+            </div>
             <div class="row">
                 <div class="col-xs-3">
-                    <input type="submit" class="btn btn-primary" value="注册"/>
+                    <input type="submit" class="btn btn-primary" value="登 录"/>
                 </div>
             </div>
         </form>
@@ -53,6 +59,14 @@
 {% endblock %}
 
 {% block js %}
+    <script>
+    $(function (){
+         $('#imageCode').click(function (){
+             var oldSrc = $(this).attr('src');
+             $(this).attr('src',oldSrc + "?"); //在请求地址后面加问号，实现点击更换，更为快捷简单
+         })
+    })
+    </script>
 
 {% endblock %}
 

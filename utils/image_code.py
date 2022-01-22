@@ -54,7 +54,9 @@ def check_code(width=120, height=30, char_length=5, font_file='utils/Monaco.ttf'
     return img, ''.join(code)
 
 
-if __name__ == '__main__':
+
+
+
     # 1. 直接打开
     # img,code = check_code()
     # img.show()
@@ -80,4 +82,3 @@ if __name__ == '__main__':
     # print(code)
     # with open('code.png','wb') as f:
     #     image_object.save(f,format='png')
-    pass
