@@ -1,3 +1,4 @@
+"""离线脚本"""
 import os
 import sys
 import django

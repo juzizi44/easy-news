@@ -1,3 +1,4 @@
+"""生成图片验证码"""
 import random
 
 from PIL import Image, ImageFilter, ImageDraw, ImageFont

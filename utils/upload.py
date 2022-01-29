@@ -1,3 +1,4 @@
+"""后台富文本编辑器中的图片上传"""
 import os
 import uuid
 from django.views.decorators.csrf import csrf_exempt

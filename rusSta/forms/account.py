@@ -9,7 +9,8 @@ from utils import encrypt
 from rusSta.forms.bootstrap import BootStrapForm
 from rusSta.views import account
 
-class RegisterModelForm(BootStrapForm,forms.ModelForm):
+
+class RegisterModelForm(BootStrapForm, forms.ModelForm):
     # django里面没有专门针对手机号的验证，在这里可以重写
     mobile_phone = forms.CharField(label='手机号', validators=[RegexValidator(r'^(1[3|4|5|6|7|8|9])\d{9}$', '手机号格式错误'), ])
 
@@ -37,8 +38,6 @@ class RegisterModelForm(BootStrapForm,forms.ModelForm):
     class Meta:
         model = models.UserInfo
         fields = ['username', 'email', 'mobile_phone', 'password', 'confirm_password']
-
-
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -74,17 +73,18 @@ class RegisterModelForm(BootStrapForm,forms.ModelForm):
         return confirm_pwd
 
 
-class LoginForm(BootStrapForm,forms.Form):
+class LoginForm(BootStrapForm, forms.Form):
     username = forms.CharField(label='用户名')
     password = forms.CharField(label='密码', widget=forms.PasswordInput(render_value=True))
     code = forms.CharField(label='图片验证码')
+
     class Meta:
         fields = ['username', 'password', 'code']
 
-
-    def __init__(self,request,*args,**kwargs):
-        super().__init__(*args,**kwargs)
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.request = request
+
     #
     # def clean_username(self):
     #     username = self.cleaned_data['username']

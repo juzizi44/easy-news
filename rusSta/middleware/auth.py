@@ -17,8 +17,6 @@ class AuthMiddleware(MiddlewareMixin):
         if request.path_info in settings.WHITE_REGEX_URL_LIST:
             return
 
-
-
         # 检查用户是否已登录，已登录继续往后走；未登录则返回登录页面
         if not request.tracer:
             return redirect('login')

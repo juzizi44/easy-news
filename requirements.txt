@@ -1,7 +1,12 @@
 asgiref==3.4.1
+cffi==1.15.0
+cryptography==36.0.1
 Django==3.2.11
+django-simpleui==2022.1
 mysqlclient==2.1.0
+one==0.2.1
 Pillow==9.0.0
+pycparser==2.21
 PyMySQL==1.0.2
 pytz==2021.3
 qcloudsms-py==0.1.4
