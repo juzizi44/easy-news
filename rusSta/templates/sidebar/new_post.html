@@ -1,1 +1,7 @@
-最新文章
+{% load category %}
+{% get_new_post as post_list %}
+{% for post in post_list %}
+    <ul>
+    <li><a href="{% url 'post_detail' post.category.id post.id %}">{{ post.title }}</a> </li>
+    </ul>
+{% endfor %}

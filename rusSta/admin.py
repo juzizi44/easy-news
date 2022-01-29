@@ -1,27 +1,39 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 # Register your models here.
-from .models import UserInfo,Category,Tag,Post
-from utils import encrypt
-from django.contrib.auth.admin import UserAdmin
+from .models import UserInfo, Category, Tag, Post, Sidebar
 
-# # 取消关联注册User
-# admin.site.unregister(User)
-#
-# # 定义关联对象的样式，StackedInline为纵向排列每一行，TabularInline为并排排列
-# class UserProfileInline(admin.StackedInline):
-#     model = UserInfo # 关联的模型
+from django.contrib import admin
 
-#
-# 关联UserProfile
-# class UserProfileAdmin(UserAdmin):
-#     inlines = [UserProfileInline]
+admin.site.site_header = '俄语小站管理后台'  # 设置header
+admin.site.site_title = '俄语小站管理后台'  # 设置title
+admin.site.index_title = '俄语小站管理后台'
 
-# 注册User模型
 
 admin.site.register(UserInfo)
 admin.site.register(Category)
-admin.site.register(Post)
 admin.site.register(Tag)
+admin.site.register(Sidebar)
 
 
+
+class PostAdmin(admin.ModelAdmin):
+    """文章详情管理"""
+    list_display = ('id', 'title', 'category', 'tags', 'owner', 'pv', 'pub_date',)
+    list_filter = ('owner',)
+    search_fields = ('title', 'desc')
+    list_display_links = ('title',)
+
+    class Media:
+        css = {
+            "all": ('plugin/ckeditor5/cked.css',)
+        }
+        js = (
+            'https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js',
+            'plugin/ckeditor5/ckeditor.js',
+            'plugin/ckeditor5/translations/zh.js',
+            'plugin/ckeditor5/config.js',
+        )
+
+
+admin.site.register(Post, PostAdmin)

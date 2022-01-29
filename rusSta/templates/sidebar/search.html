@@ -1,1 +1,8 @@
-搜索：<input type="text" name="" id="">
+<form action="{% url 'search' %}" method="get">
+    {% csrf_token %}
+    <div >
+        <input type="search" class="input form-control" name="keyword" placeholder="Search" value="{{ keyword }}">
+        <br>
+        <input class="btn btn-primary" type="submit" value="搜索">
+    </div>
+</form>

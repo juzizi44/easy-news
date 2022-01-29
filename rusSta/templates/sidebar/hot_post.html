@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% load category %}
+{% get_hot_pv_post as post_list %}
+{% for post in post_list %}
+    <ul>
+    <li><a href="{% url 'post_detail' post.category.id post.id %}">{{ post.title }}</a> </li>
+    </ul>
+{% endfor %}

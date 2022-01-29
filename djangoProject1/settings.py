@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,6 +68,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            "libraries": {  # 添加这边三行配置
+                'category': 'rusSta.templatetags.category'  # 添加这边三行配置
+            }
         },
     },
 ]
@@ -139,14 +142,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ####### SMS ########
-# 腾讯云短信应用的 app_id
-TENCENT_SMS_APP_ID = 666666666
-# 腾讯云短信应用的 app_key
-TENCENT_SMS_APP_KEY = "6666666666666666"
-# 腾讯云短信应用的 app_sign
-TENCENT_SMS_SING = "python之路"
-
+# PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname('__file__')))
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -154,3 +150,17 @@ try:
     from .local_settings import *
 except ImportError:
     pass
+
+# 无需登录也可以访问的页面
+WHITE_REGEX_URL_LIST = [
+    '/admin/',
+    '/register/',
+    '/login/',
+    '/image/code/',
+    '/index/',
+    '/web/',
+]
+
+# 隐藏右侧SimpleUI广告链接和使用分析
+SIMPLEUI_HOME_INFO = False
+SIMPLEUI_ANALYSIS = False

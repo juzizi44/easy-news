@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'layout/basic.html' %}
+{% load static category %}
+{% block title %}我的文章{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block content %}
+
+<div class="container" style="margin-top: 80px;">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="page-header">
+				<h1>
+					我的文章 <small>Subtext for header</small>
+				</h1>
+			</div>
+            {% for passage in my_post %}
+			<h2>
+                {{ passage }}
+
+			</h2>
+			<p>
+				{{ passage.desc }}
+			</p>
+			<p>
+				 <a class="btn" href="{% url 'post_detail' passage.category.id passage.id %}">View details »</a>
+			</p>
+             {% endfor %}
+		</div>
+
+	</div>
+</div>
+
+
+{% endblock %}

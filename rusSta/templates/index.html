@@ -1,139 +1,111 @@
 {% extends 'layout/basic.html' %}
-{% load static %}
+{% load static category %}
+
 {% block title %}首页{% endblock %}
 {% block css %}
 {% endblock %}
 {% block content %}
 
 
-{#    <h1>查询文章的分类</h1>#}
-{#    {% for category in category_list %}#}
-{#        {{ category.name }}<br/>#}
-{#        {{ category.desc }}<br/>#}
-{#    {% endfor %}#}
+
     <div class="container" style="margin-top: 80px;">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="jumbotron">
-				<h1>
-					Hello, world!
-				</h1>
-				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-				</p>
-				<p>
-					 <a href='#' class="btn btn-primary btn-large" href="#">Learn more</a>
-				</p>
-			</div>
-			<div class="row clearfix">
-				<div class="col-md-4 column">
-					<img height="150px" width="350px" alt="140x140" src="../static/img/news1.png" />
-				</div>
-				<div class="col-md-8 column">
-					<div class="panel-group" id="panel-421923">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								 <a class="panel-title" data-toggle="collapse" data-parent="#panel-421923" href="#panel-element-7885">Collapsible Group Item #1</a>
-							</div>
-							<div id="panel-element-7885" class="panel-collapse collapse in">
-								<div class="panel-body">
-									Anim pariatur cliche...
-								</div>
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								 <a class="panel-title" data-toggle="collapse" data-parent="#panel-421923" href="#panel-element-200603">Collapsible Group Item #2</a>
-							</div>
-							<div id="panel-element-200603" class="panel-collapse collapse">
-								<div class="panel-body">
-									Anim pariatur cliche...
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row clearfix">
-				<div class="col-md-8 column">
-					<div class="panel-group" id="panel-581576">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-581576" href="#panel-element-456347">Collapsible Group Item #1</a>
-							</div>
-							<div id="panel-element-456347" class="panel-collapse collapse">
-								<div class="panel-body">
-									Anim pariatur cliche...
-								</div>
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								 <a class="panel-title" data-toggle="collapse" data-parent="#panel-581576" href="#panel-element-621888">Collapsible Group Item #2</a>
-							</div>
-							<div id="panel-element-621888" class="panel-collapse in">
-								<div class="panel-body">
-									Anim pariatur cliche...
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 column">
-					<img height="150px" width="350px" alt="140x140" src="../static/img/bus.jpg" />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<img alt="140x140" src="../static/img/1.jpg" />
-						<div class="caption">
-							<h3>
-								Thumbnail label
-							</h3>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-							<p>
-								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<img alt="300x200" src="../static/img/2.jpg" />
-						<div class="caption">
-							<h3>
-								Thumbnail label
-							</h3>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-							<p>
-								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<img  alt="300x200" src="../static/img/3.jpg" />
-						<div class="caption">
-							<h3>
-								Thumbnail label
-							</h3>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-							<p>
-								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div> <address> <strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890</address>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="jumbotron">
+                    <h1>
+                        Hello, {{ request.tracer.username }}
+                    </h1>
+                    <p>
+                        This is a template for a simple marketing or informational website. It includes a large callout
+                        called the hero unit and three supporting pieces of content. Use it as a starting point to
+                        create something more unique.
+                    </p>
+
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <div class="page-header">
+                            <h1>
+                                最新文章 <small>Subtext for header</small>
+                            </h1>
+                        </div>
+                        <div class="row">
+
+
+                            {% for post in posts %}
+
+                            <div class="col-md-4">
+                                <div class="thumbnail">
+                                    <img height="10px" alt="300x200" src="{{ post.picture.url }}"/>
+                                    <div class="caption">
+                                        <h3>
+                                            <a href="#">{{ post.title }}</a>
+                                        </h3>
+                                        <p>
+                                            {{ post.desc }}
+                                        </p>
+                                        <p>
+                                            <a class="btn btn-primary" href="{% url 'post_detail' post.category.id post.id %}">查看</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-6 column">
+                        <div class="page-header">
+                            <h1>
+                                我的文章 <small>Subtext for header</small>
+                            </h1>
+                        </div>
+                        {% for my_p in my_post %}
+                        <h2>
+                            {{ my_p.title }}
+                        </h2>
+                        <p>
+                            {{ my_p.desc }}
+                        </p>
+                        <p>
+                            <a class="btn" href="{% url 'post_detail' my_p.category.id my_p.id %}">View details »</a>
+                        </p>
+                        {% endfor %}
+                     <a class="btn btn-primary" href="{% url 'user_post' %}">查看更多</a>
+                    </div>
+                    <div class="col-md-6 column">
+                        <div class="page-header">
+                            <h1>
+                                我的收藏 <small>Subtext for header</small>
+                            </h1>
+                        </div>
+                        {% for my_c in my_collect %}
+                        <h2>
+                            {{ my_c.title }}
+                        </h2>
+                        <p>
+                            {{ my_c.desc }}
+                        </p>
+                        <p>
+                            <a class="btn" href="{% url 'post_detail' my_c.category.id my_c.id %}">View details »</a>
+                        </p>
+                        {% endfor %}
+                        <a class="btn btn-primary" href="{% url 'user_collection' %}">查看更多</a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div> <address> <strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890</address>
 		</div>
-	</div>
-</div>
+
+
+        </div>
+    </div>
+
+
+
 {% endblock %}

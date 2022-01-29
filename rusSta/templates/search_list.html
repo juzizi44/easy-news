@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'layout/basic.html' %}
+{% load static category %}
+
+{% block title %}分类查询页{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+    <div class="container" style="margin-top: 80px;">
+        <div class="row clearfix">
+            <div class="col-md-8 column">
+                {% if page_obj %}
+
+                    {% for post in page_obj %}
+                        <h2>
+                            {{ post.title }}
+                        </h2>
+                        <p>
+                            {{ post.desc }}
+                        </p>
+                        <p>
+                            <a class="btn" href="{% url 'post_detail' post.category.id post.id %}">View details »</a>
+                        </p>
+                    {% endfor %}
+                {% else %}
+                    <p>文章不存在</p>
+                {% endif %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li>
+                            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        </li>
+                    {% endif %}
+
+
+
+                    {% if page_obj.has_next %}
+                        <li>
+                            <a href="?page={{ page_obj.next_page_number }}">Next page</a>
+                        </li>
+                    {% endif %}
+
+
+                </ul>
+
+            </div>
+            <div class="col-md-4 column">
+                {% block right %}
+                    {% get_sidebar_list as sidebar_list %}
+                    {% for sidebar in sidebar_list %}
+                        <div>
+                            <h3>{{ sidebar.title }}</h3>
+                            <p>{{ sidebar.get_content | safe }}</p>
+
+                        </div>
+                    {% endfor %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
