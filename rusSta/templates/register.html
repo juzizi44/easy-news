@@ -10,12 +10,24 @@
             position:absolute;
             font-size: 13px;
         }
+        body{
+            background-image: url(../static/img/微信图片_20220129115138.jpg);
+            background-size: cover;
+            background-position: 50% 24%;
+        }
+        .title{
+            font-weight: bolder;
+            font-size:28px;
+            margin-left: 36%;
+            margin-bottom: 20px;
+
+        }
     </style>
 
 {% endblock %}
 
 {% block content %}
-    <div class="account" style="margin-top: 80px;">
+    <div class="account" style="margin-top: 200px;margin-left: 65%;">
         <div class="title">用户注册</div>
         <form id="regForm" method="POST" novalidate>
             {% csrf_token %}
@@ -24,13 +36,14 @@
                     <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                     {{ field }}
                     <span class="error-msg">{{ field.errors.0 }}</span>
+                    <div style="height: 10px"></div>
                 </div>
 
             {% endfor %}
             <div>
                 <div style="float:right;">
                     <a href="{% url 'login' %}">登录</a>
-                    <a href="{% url 'index' %}">返回首页</a>
+                    <a href="{% url 'web' %}">返回首页</a>
                 </div>
             </div>
 

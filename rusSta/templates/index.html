@@ -34,22 +34,25 @@
 
                             {% for post in posts %}
 
-                            <div class="col-md-4">
-                                <div class="thumbnail">
-                                    <img height="10px" alt="300x200" src="{{ post.picture.url }}"/>
-                                    <div class="caption">
-                                        <h3>
-                                            <a href="#">{{ post.title }}</a>
-                                        </h3>
-                                        <p>
-                                            {{ post.desc }}
-                                        </p>
-                                        <p>
-                                            <a class="btn btn-primary" href="{% url 'post_detail' post.category.id post.id %}">查看</a>
-                                        </p>
+                                <div class="col-md-4">
+                                    <div class="thumbnail">
+                                        <div style="height: 300px;background-image: url({{ post.picture.url }});background-size: cover;">
+
+                                        </div>
+                                        <div class="caption">
+                                            <h3>
+                                                <a href="#">{{ post.title | truncatechars:40 }}</a>
+                                            </h3>
+                                            <p>
+                                                {{ post.desc | truncatechars:80 }}
+                                            </p>
+                                            <p>
+                                                <a class="btn btn-primary"
+                                                   href="{% url 'post_detail' post.category.id post.id %}">查看</a>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             {% endfor %}
 
 
@@ -64,17 +67,18 @@
                             </h1>
                         </div>
                         {% for my_p in my_post %}
-                        <h2>
-                            {{ my_p.title }}
-                        </h2>
-                        <p>
-                            {{ my_p.desc }}
-                        </p>
-                        <p>
-                            <a class="btn" href="{% url 'post_detail' my_p.category.id my_p.id %}">View details »</a>
-                        </p>
+                            <h2>
+                                {{ my_p.title }}
+                            </h2>
+                            <p>
+                                {{ my_p.desc }}
+                            </p>
+                            <p>
+                                <a class="btn" href="{% url 'post_detail' my_p.category.id my_p.id %}">View details
+                                    »</a>
+                            </p>
                         {% endfor %}
-                     <a class="btn btn-primary" href="{% url 'user_post' %}">查看更多</a>
+                        <a class="btn btn-primary" href="{% url 'user_post' %}">查看更多</a>
                     </div>
                     <div class="col-md-6 column">
                         <div class="page-header">
@@ -83,15 +87,16 @@
                             </h1>
                         </div>
                         {% for my_c in my_collect %}
-                        <h2>
-                            {{ my_c.title }}
-                        </h2>
-                        <p>
-                            {{ my_c.desc }}
-                        </p>
-                        <p>
-                            <a class="btn" href="{% url 'post_detail' my_c.category.id my_c.id %}">View details »</a>
-                        </p>
+                            <h2>
+                                {{ my_c.title }}
+                            </h2>
+                            <p>
+                                {{ my_c.desc }}
+                            </p>
+                            <p>
+                                <a class="btn" href="{% url 'post_detail' my_c.category.id my_c.id %}">View details
+                                    »</a>
+                            </p>
                         {% endfor %}
                         <a class="btn btn-primary" href="{% url 'user_collection' %}">查看更多</a>
 
@@ -99,13 +104,18 @@
                 </div>
             </div>
 
-        </div> <address> <strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890</address>
-		</div>
-
-
         </div>
-    </div>
 
+
+</div>
+
+<div style="margin-top: 50px;background-color:rgba(186, 197, 199,1);padding-left: 45%;
+padding-top: 40px;padding-bottom: 30px">
+        <address><strong>俄语小站</strong><br/> 范思棋 麻文霞 金铭燕 关一诺<br/> <br/> <abbr
+                title="Phone">P:</abbr> 15726608740
+        </address>
+
+    </div>
 
 
 {% endblock %}

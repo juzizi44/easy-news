@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     ClassicEditor
-        .create(document.querySelector('#id_content,#id_annotation'), {
+        .create(document.querySelector('#id_content'), {
 
             licenseKey: '',
 
