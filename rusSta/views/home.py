@@ -19,7 +19,7 @@ def index(request):
 
 
 def category_list(request, category_id):
-    # 查询首页数据并显示在页面
+
     category_list = models.Category.objects.all()  # 查询到所有的分类
     category = get_object_or_404(Category, id=category_id)
     posts = category.post_set.all()
