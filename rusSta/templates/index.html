@@ -3,6 +3,72 @@
 
 {% block title %}首页{% endblock %}
 {% block css %}
+    <style>
+        #footer {
+
+            margin-top: 50px;
+            background-color: rgba(186, 197, 199, 1);
+            padding-left: 4%;
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+
+        #footer .top {
+            width: 1263px;
+            height: 291px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #footer .block {
+            width: 410px;
+            height: 280px;
+            display: inline-block;
+            text-align: left;
+            color: #1f191a;
+            vertical-align: top;
+        }
+
+        #footer h2 {
+            font-size: 20px;
+            font-weight: normal;
+            padding: 10px 10px 0px 20px;
+        }
+
+        #footer hr {
+            width: 90%;
+            border: 0.5px dashed #333;
+        }
+
+        #footer ul {
+            font-size: 16px;
+            color: #4F4F4F;
+            text-indent: 16px;
+            line-height: 2;
+        }
+
+        #footer ul a {
+            text-decoration: none;
+            color: #4F4F4F;
+        }
+
+        .bo {
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            color: white;
+            background-color: #68838B;
+
+        }
+
+        .j2 {
+            padding-top: 15px;
+            padding-left: 20px;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: #c7ddef
+        }
+    </style>
 {% endblock %}
 {% block content %}
 
@@ -11,22 +77,24 @@
     <div class="container" style="margin-top: 80px;">
         <div class="row clearfix">
             <div class="col-md-12 column">
-                <div class="jumbotron">
-                    <h1>
-                        Hello, {{ request.tracer.username }}
-                    </h1>
-                    <p>
-                        This is a template for a simple marketing or informational website. It includes a large callout
-                        called the hero unit and three supporting pieces of content. Use it as a starting point to
-                        create something more unique.
-                    </p>
+                <div class="jumbotron" style="background-image: url(../static/img/hello.png);
+            background-size: contain;padding: 0">
+                    <div class="j2">
+                        <h1>
+                            Hello, {{ request.tracer.username }}
+                        </h1>
+                        <p>
+                            Привет,дорогой читатель.
+
+                            Давайте начнём с чтения!
+                        </p></div>
 
                 </div>
                 <div class="row clearfix">
                     <div class="col-md-12 column">
                         <div class="page-header">
                             <h1>
-                                最新文章 <small>Subtext for header</small>
+                                最新文章 <small>Последние статьи</small>
                             </h1>
                         </div>
                         <div class="row">
@@ -63,7 +131,7 @@
                     <div class="col-md-6 column">
                         <div class="page-header">
                             <h1>
-                                我的文章 <small>Subtext for header</small>
+                                我的文章 <small>Мои статьи</small>
                             </h1>
                         </div>
                         {% for my_p in my_post %}
@@ -83,7 +151,7 @@
                     <div class="col-md-6 column">
                         <div class="page-header">
                             <h1>
-                                我的收藏 <small>Subtext for header</small>
+                                我的收藏 <small>избранное</small>
                             </h1>
                         </div>
                         {% for my_c in my_collect %}
@@ -107,15 +175,45 @@
         </div>
 
 
-</div>
-
-<div style="margin-top: 50px;background-color:rgba(186, 197, 199,1);padding-left: 45%;
-padding-top: 40px;padding-bottom: 30px">
-        <address><strong>俄语小站</strong><br/> 范思棋 麻文霞 金铭燕 关一诺<br/> <br/> <abbr
-                title="Phone">P:</abbr> 15726608740
-        </address>
-
     </div>
+
+    <footer id="footer">
+
+        <div class="top">
+            <div class="block left">
+                <h2>相关网站</h2>
+                <hr>
+                <ul>
+                    <li><a href='http://zvuki.ru'>俄音乐之声</a></li>
+                    <li><a href='https://port.hu/'>俄国信息港</a></li>
+                    <li><a href='https://www.apn.ru/'>俄政治新闻社</a></li>
+                    <li><a href='http://music.ru/en/'>俄音乐网</a></li>
+                </ul>
+            </div>
+            <div class="block center">
+                <h2>俄语FAQ</h2>
+                <hr>
+                <ul>
+                    <li><a href='https://jingyan.baidu.com/article/1709ad80ca9edf4634c4f0c7.html'>如何学习俄语？</a></li>
+                    <li><a href='https://ru.hujiang.com/zt/yufa/'>俄语的基本语法？</a></li>
+                    <li><a href='https://zhidao.baidu.com/question/504788026.html'>俄语的起源？</a></li>
+                    <li><a href='https://www.qinxue365.com/xyzzx/Russian/553358.html'>俄语怎么发弹舌音？</a></li>
+                    <li><a href='https://zhidao.baidu.com/question/542705909.html'>俄语的你好怎么说？</a></li>
+                </ul>
+            </div>
+            <div class="block right">
+                <h2>联系方式</h2>
+                <hr>
+                <ul>
+                    <li>微博：weibo.com</li>
+                    <li>邮件：youjian@lzu.cn</li>
+                    <li>地址:兰州大学</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="bo">Copyright © YCKU 俄语小组 | 兰州大学 榆中校区 | 该网站仅供俄语学习使用</div>
+
 
 
 {% endblock %}

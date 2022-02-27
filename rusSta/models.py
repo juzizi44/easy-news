@@ -69,7 +69,7 @@ class Post(models.Model):
     pv = models.IntegerField(default=0, verbose_name="浏览量")  # 浏览量
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='分类')
     tags = models.ForeignKey(Tag, blank=True, null=True, on_delete=models.CASCADE, verbose_name='文章标签')
-    picture = models.ImageField(verbose_name='图片', null=True, upload_to='content_picture/%Y /%m/%d/')
+    picture = models.ImageField(verbose_name='图片', null=True, upload_to='content_picture/%Y/%m/%d/')
     desc = models.TextField(max_length=200, blank=True, default='', verbose_name='简介/摘要/首句')
     content = models.TextField(verbose_name='文章详情')
     annotation = models.TextField(blank=True, default='', verbose_name='文章注释')
