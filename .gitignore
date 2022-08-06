@@ -1,3 +1,6 @@
+db.sqlite3
+activate
+
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm+all,django
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm+all,django
 
