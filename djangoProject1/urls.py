@@ -23,6 +23,7 @@ from utils.upload import upload_file
 
 
 urlpatterns = [
+    path('', home.index, name='index'),
     path('admin/', admin.site.urls),
     path('web/', home.web, name='web'),
     path('register/', account.register, name='register'),
