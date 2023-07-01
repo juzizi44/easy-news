@@ -1,0 +1,15 @@
+asgiref==3.7.2
+cffi==1.15.1
+cryptography==41.0.1
+Django==4.2.1
+django-simpleui==2023.3.1
+mysqlclient==2.1.1
+one==0.2.1
+Pillow==9.5.0
+pycparser==2.21
+PyMySQL==1.0.3
+pytz==2023.3
+qcloudsms-py==0.1.4
+sqlparse==0.4.4
+typing_extensions==4.6.3
+tzdata==2023.3
