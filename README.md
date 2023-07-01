@@ -47,10 +47,6 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-- 管理后台地址：http://127.0.0.1:8000/admin/
-
-  
-
 ## 简介
 
 - 功能架构
