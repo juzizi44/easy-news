@@ -1,20 +1,24 @@
 # 一个基于Django+Mysql的资讯平台
 ## 简介
 
-- 登录注册地址：http://127.0.0.1:8000/
+### 登录注册
+（http://127.0.0.1:8000/）
 
 ![image-20230701232817452](./assets/image-20230701232817452.png)
+### 首页
 
 ![image-20220227124702310](./assets/image-20220227124702310.png)
 
-- 官网地址：http://127.0.0.1:8000/web/
+### 官网地址
+（http://127.0.0.1:8000/web/）
 
 ![image-20230701233014771](./assets/image-20230701233014771.png)
 
-- 后台地址：http://127.0.0.1:8000/admin/
+### 后台 
+（http://127.0.0.1:8000/admin/）
 
 ![image-20220225000556514-164593838601018](./assets/image-20220225000556514-164593838601018.png)
-- 功能架构
+### 整体功能架构
 
 ![内容架构](./assets/clip_image002.jpg)
 
@@ -33,11 +37,9 @@ python -m venv venv
 pip install -r requirement.txt
 ```
 
-- 修改数据库配置文件
+- 修改数据库配置文件`djangoProject1\settings.py`
 
-（在此之前需要在mysql中新建一个database）
-
-`djangoProject1\settings.py`
+（在此之前需要在mysql中新建一个database哦）
 
 ```
 DATABASES = {
